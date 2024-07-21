@@ -23,13 +23,11 @@ totalQuantity: Subject<number> = new Subject<number>();
 
     if (this.cartItems.length > 0) {
       // find the item in the cart based on item id
-
-      for (let tempCartItem of this.cartItems) {
-        if (tempCartItem.id === theCartItem.id) {
-          existingCartItem = tempCartItem;
-          break;
-        }
-      }
+      /**
+       * Find returns the first element that passes else returns undefined
+       * Test condition: Executes test for each element in the array until test passes
+       */
+      existingCartItem = this.cartItems.find(tempCartItem => tempCartItem.id === theCartItem.id);
 
       // check if we found it
       alreadyExistsInCart = (existingCartItem != undefined);
