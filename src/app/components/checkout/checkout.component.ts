@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
 import { TastefulTreasureFormService } from 'src/app/services/tasteful-treasure-form.service';
+import { TastefulTreasureValidators } from 'src/app/validators/tasteful-treasure-validators';
 
 @Component({
   selector: 'app-checkout',
@@ -28,10 +29,10 @@ export class CheckoutComponent implements OnInit {
     
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        lastName:  new FormControl('', [Validators.required, Validators.minLength(2)]),
+        firstName: new FormControl('', [Validators.required, Validators.minLength(2), TastefulTreasureValidators.notOnlyWhitespace]),
+        lastName:  new FormControl('', [Validators.required, Validators.minLength(2), TastefulTreasureValidators.notOnlyWhitespace]),
         email: new FormControl('',
-                              [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
+                              [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'), TastefulTreasureValidators.notOnlyWhitespace])
       }),
       shippingAddress: this.formBuilder.group({
         street: [''],
@@ -109,7 +110,7 @@ export class CheckoutComponent implements OnInit {
 
   onSubmit() {
     console.log("Handling the submit button");
-    
+
     if (this.checkoutFormGroup.invalid) {
       this.checkoutFormGroup.markAllAsTouched();
     }
