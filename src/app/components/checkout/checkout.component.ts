@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Country } from 'src/app/common/country';
 import { State } from 'src/app/common/state';
+import { CartService } from 'src/app/services/cart.service';
 import { TastefulTreasureFormService } from 'src/app/services/tasteful-treasure-form.service';
 import { TastefulTreasureValidators } from 'src/app/validators/tasteful-treasure-validators';
 
@@ -23,7 +24,9 @@ export class CheckoutComponent implements OnInit {
   shippingAddressStates: State[] = [];
   billingAddressStates: State[] = [];
   
-  constructor(private formBuilder: FormBuilder, private tastefulTreasureFormService: TastefulTreasureFormService) { }
+  constructor(private formBuilder: FormBuilder, 
+    private tastefulTreasureFormService: TastefulTreasureFormService,
+    private cartService: CartService) { }
 
   ngOnInit(): void {
     
