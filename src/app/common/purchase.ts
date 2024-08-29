@@ -4,17 +4,17 @@ import { Order } from "./order";
 import { OrderItem } from "./order-item";
 
 export class Purchase {
-    customer: Customer;
-    shippingAddress: Address;
-    billingAddress: Address;
-    order: Order;
-    orderItems: OrderItem[];
+    customer: Customer | null;
+    shippingAddress: Address | null;
+    billingAddress: Address | null;
+    order: Order | null;
+    orderItems: OrderItem[] | [];
 
-    constructor(purchase: Purchase){
-        this.customer = purchase.customer;
-        this.shippingAddress = purchase.shippingAddress;
-        this.billingAddress = purchase.billingAddress;
-        this.order = purchase.order;
-        this.orderItems = purchase.orderItems
+    constructor(purchase?: Purchase){
+        this.customer = purchase ? purchase.customer : null;
+        this.shippingAddress = purchase ? purchase.shippingAddress : null;
+        this.billingAddress = purchase ? purchase.billingAddress : null;
+        this.order = purchase ? purchase.order : null;
+        this.orderItems = purchase ? purchase.orderItems : [];
     }
 }
