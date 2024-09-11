@@ -13,7 +13,23 @@ cartItems: CartItem[] = [];
 
 totalPrice: Subject<number> = new BehaviorSubject<number>(0);
 totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
-  constructor() { }
+//With session storage the data is stored in the memory of the browser upon closing the browser the data stored will be lost
+//But with local storage the data is stored is stored in the client computer so closing the browser tab doesnt lead to lost of data
+//storage: Storage = sessionStorage;
+storage: Storage = localStorage;
+  constructor() {
+
+    let item = this.storage.getItem('cartItems');
+
+    // Check if the item is not null before parsing
+    let data: CartItem[] = item ? JSON.parse(item) : [];
+
+    if(data != null){
+      this.cartItems = data;
+
+      this.computeCartTotals();
+    }
+   }
 
   addToCart(theCartItem: CartItem) {
 
@@ -63,6 +79,13 @@ totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
 
     // log cart data just for debugging purposes
     this.logCartData(totalPriceValue, totalQuantityValue);
+
+    //persist cart data
+    this.persistCartItems();
+  }
+
+  persistCartItems(){
+    this.storage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 
   logCartData(totalPriceValue: number, totalQuantityValue: number) {
