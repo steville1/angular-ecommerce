@@ -1,0 +1,7 @@
+<div *ngIf="isAuthenticated; else loggedOut">
+    <p>Welcome, {{ email }}!</p>
+    <button (click)="logout()">Logout</button>
+  </div>
+  <ng-template #loggedOut>
+    <p>You are not logged in.</p>
+</ng-template>

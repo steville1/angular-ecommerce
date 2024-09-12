@@ -30,6 +30,7 @@ import { OktaAuth } from '@okta/okta-auth-js';
 import myAppConfig from './config/my-app-config';
 import { MembersPageComponent } from './components/members-page/members-page.component';
 import { SigninComponent } from './components/signin/signin.component';
+import { SigninStatusComponent } from './components/signin-status/signin-status.component';
 
 const oktaConfig = myAppConfig.oidc;
 
@@ -75,7 +76,8 @@ const routes: Routes = [
     LoginComponent,
     LoginStatusComponent,
     MembersPageComponent,
-    SigninComponent
+    SigninComponent,
+    SigninStatusComponent
   ],
   imports: [
     BrowserModule,

@@ -44,11 +44,10 @@ export class SigninComponent implements OnInit{
       response => {
         console.log('Sign in successful', response);
          // Assuming the token is returned in the response
-         const token = response.accessToken;
-         if (token) {
-          // this.authService.saveToken(token);
-          // this.router.navigate(['/main']); // Redirect to the main page
-            // navigate back to the products page
+         const { accessToken, email } = response;
+         if (accessToken) {
+          this.authService.saveToken(accessToken);
+          this.authService.saveUserDetails(email);
           this.router.navigateByUrl("/products");
          }
       },
