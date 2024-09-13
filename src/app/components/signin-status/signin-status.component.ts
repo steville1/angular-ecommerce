@@ -21,6 +21,8 @@ export class SigninStatusComponent {
   checkAuthenticationStatus() {
     this.isAuthenticated = !!this.authService.getToken();
 
+    console.log("this.isAuthenticated", this.isAuthenticated)
+
     if (this.isAuthenticated) {
       this.getUserDetails();
     } else {

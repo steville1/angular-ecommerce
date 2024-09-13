@@ -29,6 +29,7 @@ import { MembersPageComponent } from './components/members-page/members-page.com
 import { SigninComponent } from './components/signin/signin.component';
 import { SigninStatusComponent } from './components/signin-status/signin-status.component';
 import { authGuard } from './guards/auth.guard';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
   },
   **/
   {path: 'members', component: MembersPageComponent, canActivate: [authGuard]},
+  {path: 'order-history', component: OrderHistoryComponent, canActivate: [authGuard]},
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signin', component: SigninComponent},
@@ -66,7 +68,8 @@ const routes: Routes = [
     LoginStatusComponent,
     MembersPageComponent,
     SigninComponent,
-    SigninStatusComponent
+    SigninStatusComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,

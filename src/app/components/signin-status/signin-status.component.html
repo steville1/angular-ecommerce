@@ -1,7 +1,16 @@
-<div *ngIf="isAuthenticated; else loggedOut">
-    <p>Welcome, {{ email }}!</p>
-    <button (click)="logout()">Logout</button>
+
+<div class="signin-status-header">
+
+  <div *ngIf="isAuthenticated && email" class="login-status-user-info">
+      Welcome back {{ email }}!
   </div>
-  <ng-template #loggedOut>
-    <p>You are not logged in.</p>
-</ng-template>
+
+  <button *ngIf="!isAuthenticated" routerLink="/signin" class="security-btn">Login</button>
+
+  <button *ngIf="isAuthenticated" (click)="logout()" class="security-btn">Logout</button>
+
+  <button *ngIf="isAuthenticated" routerLink="/members" class="security-btn ms-1">Member</button>
+
+  <button *ngIf="isAuthenticated" routerLink="/order-history" class="security-btn ms-1">Orders</button>
+
+</div>
