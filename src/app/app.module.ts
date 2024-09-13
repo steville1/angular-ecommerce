@@ -25,29 +25,18 @@ import {
   OktaAuthGuard
 } from '@okta/okta-angular';
 
-import { OktaAuth } from '@okta/okta-auth-js';
-
-import myAppConfig from './config/my-app-config';
 import { MembersPageComponent } from './components/members-page/members-page.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SigninStatusComponent } from './components/signin-status/signin-status.component';
+import { authGuard } from './guards/auth.guard';
 
-const oktaConfig = myAppConfig.oidc;
-
-const oktaAuth = new OktaAuth(oktaConfig);
-
-function sendToLoginPage(oktaAuth: OktaAuth, injector: Injector){
-  //Use injector to access any service available within your application
-  const router = injector.get(Router);
-
-  //Redirect the user to your custom login page
-  router.navigate(['/login']);
-}
 
 const routes: Routes = [
-  {path: 'members', component: MembersPageComponent, canActivate: [OktaAuthGuard],
+ /**  {path: 'members', component: MembersPageComponent, canActivate: [OktaAuthGuard],
           data: {onAuthRequired: sendToLoginPage}
   },
+  **/
+  {path: 'members', component: MembersPageComponent, canActivate: [authGuard]},
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signin', component: SigninComponent},
@@ -89,7 +78,7 @@ const routes: Routes = [
     OktaAuthModule,
 
   ],
-  providers: [ProductService,  {provide: OKTA_CONFIG, useValue: { oktaAuth }}],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
