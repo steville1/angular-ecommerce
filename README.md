@@ -12,6 +12,7 @@ Run `ng generate component components/component-name` to generate a new componen
 
 Run `ng generate service services/service-name` to generate a new service.
 Run `ng generate class common/class-name` to generate a new class.
+Run `ng generate guard guards/auth` to generate a guard
 
 ## Build
 
