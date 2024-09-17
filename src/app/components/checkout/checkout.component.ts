@@ -6,6 +6,7 @@ import { Order } from 'src/app/common/order';
 import { OrderItem } from 'src/app/common/order-item';
 import { Purchase } from 'src/app/common/purchase';
 import { State } from 'src/app/common/state';
+import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CheckoutService } from 'src/app/services/checkout.service';
 import { TastefulTreasureFormService } from 'src/app/services/tasteful-treasure-form.service';
@@ -33,10 +34,14 @@ export class CheckoutComponent implements OnInit {
     private tastefulTreasureFormService: TastefulTreasureFormService,
     private cartService: CartService,
     private checkoutService: CheckoutService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+
+    // read the user's email address from browser storage
+    const theEmail = this.authService.getUserDetails();
 
     this.reviewCartDetails();
     
@@ -44,7 +49,7 @@ export class CheckoutComponent implements OnInit {
       customer: this.formBuilder.group({
         firstName: new FormControl('', [Validators.required, Validators.minLength(2), TastefulTreasureValidators.notOnlyWhitespace]),
         lastName:  new FormControl('', [Validators.required, Validators.minLength(2), TastefulTreasureValidators.notOnlyWhitespace]),
-        email: new FormControl('',
+        email: new FormControl(theEmail,
                               [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')])
       }),
       shippingAddress: this.formBuilder.group({
