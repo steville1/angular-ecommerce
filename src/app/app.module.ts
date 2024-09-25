@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
-import { HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { ProductService } from './services/product.service';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
@@ -30,6 +30,8 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SigninStatusComponent } from './components/signin-status/signin-status.component';
 import { authGuard } from './guards/auth.guard';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { AuthService } from './services/auth.service';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 
 const routes: Routes = [
@@ -81,7 +83,12 @@ const routes: Routes = [
     OktaAuthModule,
 
   ],
-  providers: [ProductService],
+  providers: [ProductService, AuthService, // Provide your AuthService
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true // Indicates multiple interceptors can be added
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
