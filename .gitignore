@@ -44,3 +44,5 @@ Thumbs.db
 
 #other program files
 *.c#
+
+ssl-localhost/

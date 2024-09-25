@@ -16,8 +16,8 @@ export class AuthInterceptorService implements HttpInterceptor {
     // Specify the URL(s) you want to protect
    
     const protectedUrls = [
-      'http://localhost:8080/api/orders',
-      'http://localhost:8080/api/checkout/purchase',
+      'https://localhost:8443/api/orders',
+      'https://localhost:8443/api/checkout/purchase',
     ];
     if (protectedUrls.some(url => req.url.includes(url))) {
       const authToken = this.authService.getToken();

@@ -8,7 +8,7 @@ import { User } from '../common/signin';
 })
 export class AuthService {
 
-  private authUrl = 'http://localhost:8080/api/auth/signin';
+  private authUrl = 'https://localhost:8443/api/auth/signin';
 
   constructor(private http: HttpClient) {}
 
