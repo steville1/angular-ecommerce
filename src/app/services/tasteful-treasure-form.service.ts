@@ -3,14 +3,16 @@ import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 import { Country } from '../common/country';
 import { State } from '../common/state';
+import { environment } from 'src/environments/environment.development';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TastefulTreasureFormService {
 
-  private countriesUrl = "https://localhost:8443/api/countries";
-  private statesUrl ="https://localhost:8443/api/states";
+  private countriesUrl = `${environment.tastfultreasureApiUrl}/countries`;
+  private statesUrl = `${environment.tastfultreasureApiUrl}/states`;
 
   constructor(private httpClient: HttpClient) { }
 

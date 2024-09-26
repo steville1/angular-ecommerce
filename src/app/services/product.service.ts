@@ -4,6 +4,8 @@ import { Product } from '../common/product';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ProductCategory } from '../common/product-category';
+import { environment } from 'src/environments/environment.development';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,8 @@ export class ProductService {
   
  
 
-  private baseUrl = 'https://localhost:8443/api/products';
-  private categoryUrl = 'https://localhost:8443/api/product-category';
+  private baseUrl = environment.tastfultreasureApiUrl + '/products';
+  private categoryUrl = environment.tastfultreasureApiUrl + '/product-category';
 
   constructor(private httpClient: HttpClient) { }
 

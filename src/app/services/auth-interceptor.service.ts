@@ -2,6 +2,8 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +16,12 @@ export class AuthInterceptorService implements HttpInterceptor {
 
 
     // Specify the URL(s) you want to protect
+
+    const endpoint = environment.tastfultreasureApiUrl;
    
     const protectedUrls = [
-      'https://localhost:8443/api/orders',
-      'https://localhost:8443/api/checkout/purchase',
+      endpoint + '/orders',
+      endpoint + '/checkout/purchase',
     ];
     if (protectedUrls.some(url => req.url.includes(url))) {
       const authToken = this.authService.getToken();
