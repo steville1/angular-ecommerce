@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../common/signin';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private authUrl = 'https://localhost:8443/api/auth/signin';
+  private authUrl = environment.tastfultreasureApiUrl + '/auth/signin';
 
   constructor(private http: HttpClient) {}
 

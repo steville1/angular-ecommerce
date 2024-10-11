@@ -4,5 +4,5 @@ export interface Environment {
 }
 export const environment: Environment = {
     production: false,
-    tastfultreasureApiUrl: "https://localhost:8080/api"
+    tastfultreasureApiUrl: "https://localhost:9898/api"
 };

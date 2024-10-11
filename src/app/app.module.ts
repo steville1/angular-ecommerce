@@ -15,7 +15,6 @@ import { CartStatusComponent } from './components/cart-status/cart-status.compon
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component'
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginComponent } from './components/login/login.component';
 import { LoginStatusComponent } from './components/login-status/login-status.component';
 
 import {
@@ -41,8 +40,6 @@ const routes: Routes = [
   **/
   {path: 'members', component: MembersPageComponent, canActivate: [authGuard]},
   {path: 'order-history', component: OrderHistoryComponent, canActivate: [authGuard]},
-  {path: 'login/callback', component: OktaCallbackComponent},
-  {path: 'login', component: LoginComponent},
   {path: 'signin', component: SigninComponent},
 
   {path: 'checkout', component: CheckoutComponent},
@@ -66,7 +63,6 @@ const routes: Routes = [
     CartStatusComponent,
     CartDetailsComponent,
     CheckoutComponent,
-    LoginComponent,
     LoginStatusComponent,
     MembersPageComponent,
     SigninComponent,
